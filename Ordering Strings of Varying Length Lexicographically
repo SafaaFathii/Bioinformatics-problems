@@ -1,0 +1,30 @@
+import re
+def split(word):
+    return [char for char in word]
+
+import itertools
+lst1 = input("Enter List")
+lst = lst1.split(" ")
+num = input("Enter num")
+numb = int(num)
+last3 = []
+for k in range(1,numb+1):
+    last2 = [p for p in itertools.product(lst, repeat=k)]
+    #last2.sort()
+    for i in last2:
+        last3.append("".join(i))
+POS = {c:p for (p, c) in enumerate(lst)}
+class MyStrOrder:
+    def __init__(self, inner):
+        self.inner = inner
+
+    def __lt__(self, other):
+        for i in range(min(len(self.inner), len(other.inner))):
+            a = POS.get(self.inner[i])
+            b = POS.get(other.inner[i])
+            if a != b:
+                return a < b
+        return len(self.inner) < len(other.inner)
+last3.sort(key = MyStrOrder)
+for o in last3:
+    print(o)
