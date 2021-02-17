@@ -1,0 +1,21 @@
+# import re
+# def split(word):
+#     return [char for char in word]
+import random
+k = 18
+m = 30
+n = 30
+
+trials = 0
+dominants = 0
+
+while True:
+    s = ['AA'] * k + ['Aa'] * m + ['aa'] * n
+    first = random.choice(s)
+    s.remove(first)
+    second = random.choice(s)
+    has_dominant_allele = 'A' in [random.choice(first), random.choice(second)]
+    trials += 1
+    if has_dominant_allele:
+        dominants += 1
+    print ("%.5f" % (dominants / float(trials)))
